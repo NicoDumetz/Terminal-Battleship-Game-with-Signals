@@ -26,13 +26,13 @@ int check_victory(int pid_ennemy, char **map, char **map_enemy)
     compt = compt_x(map);
     if (compt == 14) {
         display_all(map, map_enemy);
-        my_printf("\nEnemy won\n");
+        my_printf("Enemy won\n");
         return 1;
     }
     compt = compt_x(map_enemy);
     if (compt == 14) {
         display_all(map, map_enemy);
-        my_printf("\nI won\n");
+        my_printf("I won\n");
         return 0;
     }
     return 3;
