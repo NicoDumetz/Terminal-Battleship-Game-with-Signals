@@ -59,8 +59,8 @@ int attack_player(int pid_ennemy2, char **map, char **map_enemy)
     }
     signal(SIGUSR1, signal_handler_player);
     signal(SIGUSR2, signal_handler_player);
-    send_pos(pid_ennemy2, buffer);
     received_signal = -1;
+    send_pos(pid_ennemy2, buffer);
     while (received_signal == -1);
     check_missed_or_hit(map_enemy, buffer);
     free(buffer);
