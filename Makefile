@@ -11,6 +11,8 @@ SRC = main.c \
 	  ressources/connection.c \
 	  ressources/map.c \
 	  ressources/display.c \
+	  ressources/bitshift.c \
+	  ressources/signal.c \
 
 OBJ = $(SRC:.c=.o)
 

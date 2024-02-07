@@ -25,13 +25,18 @@ int player1(char **map);
 int player2(char **map, char **av);
 int connection_player1(void);
 int connection_player2(int pid);
-char *read_file(char *filename);
-int write_file(char *filename, char *content);
 char *int_to_str(int nb);
-void send_signal_miss(int pid);
-void send_signal_hit(int pid);
 void signal_handler_player(int signe);
 char **get_map(char *filepath);
 int display_map(char **map);
+void send_signal_zero(int pid);
+void send_signal_one(int pid);
+int send_pid(int pid, int pid_enemy);
+int set_pid_ennemy(int pid_ennemy2);
+char *get_pos(void);
+int send_pos(int pid_enemy, char *pos);
+int attack_player(int pid_ennemy2);
+int waiting_player(int pid_ennemy2);
+int display_all(char **map);
 
 #endif
