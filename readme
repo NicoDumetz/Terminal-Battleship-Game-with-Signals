@@ -1,0 +1,55 @@
+README: Terminal Battleship Game with Signals
+
+Battleship is a classic game where two players strategically place their ships on a grid and take turns guessing each other's ship positions to sink them. In this terminal version of Battleship, players communicate using signals, specifically SIGUSR1 and SIGUSR2.
+Overview
+
+    Objective: Sink all of your opponent's ships before they sink yours.
+    Author: Nicolas Dumetz
+
+Usage
+
+bash
+
+$ ./my_navy [first_player_pid] navy_positions
+
+Arguments
+
+    first_player_pid: PID of the first player (only for the 2nd player).
+    navy_positions: File representing the positions of the ships.
+
+Navy Positions File
+
+The file passed as a parameter must contain lines formatted as follows:
+
+yaml
+
+LENGTH : FIRST_SQUARE : LAST_SQUARE
+
+    LENGTH: Length of the ship.
+    FIRST_SQUARE: Position of the ship's first square.
+    LAST_SQUARE: Position of the ship's last square.
+
+The file must contain 4 ships, each with lengths 2, 3, 4, and 5.
+Game Play
+
+    Each player takes turns displaying their positions and then guessing their opponent's positions.
+    Signals SIGUSR1 and SIGUSR2 are used to communicate between players.
+    Be cautious as signals can be lost during communication.
+
+Win Condition
+
+    The game ends when all the ships of a player have been hit.
+    If the player wins, display "I won" and return 0.
+    If the enemy wins, display "Enemy won" and return 1.
+
+Compilation
+
+Compile the Battleship game using the provided Makefile:
+
+bash
+
+$ make
+
+Contributing
+
+Contributions to the project are welcome! Feel free to open an issue or submit a pull request on the project's repository
