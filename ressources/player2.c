@@ -25,12 +25,12 @@ int check_shoot(char **map, char *pos, int pid_ennemy2)
         my_printf("\nresult: %s:missed\n\n", pos);
         if (map[i][j] == '.')
             map[i][j] = 'o';
-        usleep(1);
+        usleep(100);
         send_signal_zero(pid_ennemy2);
     } else if (map[i][j] != '.') {
         my_printf("\nresult: %s:hit\n\n", pos);
         map[i][j] = 'x';
-        usleep(1);
+        usleep(100);
         send_signal_one(pid_ennemy2);
     }
 }
@@ -68,7 +68,6 @@ int player2(char **map, char **av, char **map_enemy)
     if (connection_player2(pid_ennemy) == 84)
         return 84;
     received_signal = -1;
-    send_pid(getpid(), pid_ennemy);
     while (stop == 3)
         stop = game_loop(pid_ennemy, map, map_enemy);
     return stop;

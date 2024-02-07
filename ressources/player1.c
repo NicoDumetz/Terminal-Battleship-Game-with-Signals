@@ -49,6 +49,8 @@ int attack_player(int pid_ennemy2, char **map, char **map_enemy)
         buffer[2] = '\0';
         len = check_pos(len, buffer);
     }
+    signal(SIGUSR1, signal_handler_player);
+    signal(SIGUSR2, signal_handler_player);
     send_pos(pid_ennemy2, buffer);
     received_signal = -1;
     while (received_signal == -1);
@@ -85,12 +87,8 @@ int player1(char **map, char **map_enemy)
     int stop = 3;
 
     connection_player1();
+    pid_ennemy2 = received_signal;
     received_signal = -1;
-    signal(SIGUSR1, signal_handler_player);
-    signal(SIGUSR2, signal_handler_player);
-    for (int i = 0; i < sizeof(int) * 8; i++) {
-        pid_ennemy2 = set_pid_ennemy(pid_ennemy2);
-    }
     while (stop == 3)
         stop = game(pid_ennemy2, map, map_enemy);
     return stop;

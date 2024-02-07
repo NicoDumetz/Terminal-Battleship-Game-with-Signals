@@ -8,20 +8,27 @@
 #include "../include/my.h"
 int received_signal = 0;
 
-static void signal_handler(int signe)
+
+static void signal_handler(int signo, siginfo_t *info, void *context)
 {
-    if (signe == SIGUSR1) {
+    if (signo == SIGUSR1) {
         received_signal = 1;
+        received_signal = info->si_pid;
     }
 }
 
 int connection_player1(void)
 {
-    signal(SIGUSR1, signal_handler);
+    struct sigaction sa;
+
+    sa.sa_sigaction = signal_handler;
+    sa.sa_flags = SA_SIGINFO;
+    sigaction(SIGUSR1, &sa, NULL);
     my_printf("my_pid: %d\n\n", getpid());
     my_printf("waiting for enemy...\n\n");
     while (!received_signal);
     my_printf("enemy connected\n\n");
+    return 0;
 }
 
 int send_signal_co(int pid)

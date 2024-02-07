@@ -31,8 +31,6 @@ char **get_map(char *filepath);
 int display_map(char **map);
 int send_signal_zero(int pid);
 int send_signal_one(int pid);
-int send_pid(int pid, int pid_enemy);
-int set_pid_ennemy(int pid_ennemy2);
 char *get_pos(void);
 int send_pos(int pid_enemy, char *pos);
 int attack_player(int pid_ennemy2, char **map, char **map_enemy);

@@ -7,33 +7,6 @@
 #include "../include/my_navy.h"
 #include "../include/my.h"
 
-
-int send_pid(int pid, int pid_enemy)
-{
-    int bit;
-
-    for (int i = (sizeof(int) * 8) - 1; i >= 0; i--) {
-        bit = (pid >> i) & 1;
-        if (bit == 1) {
-            send_signal_one(pid_enemy);
-        } else {
-            send_signal_zero(pid_enemy);
-        }
-        usleep(1);
-    }
-}
-
-int set_pid_ennemy(int pid_ennemy2)
-{
-    while (received_signal == -1);
-    if (received_signal == 0)
-        pid_ennemy2 = (pid_ennemy2 << 1) | 0;
-    if (received_signal == 1)
-        pid_ennemy2 = (pid_ennemy2 << 1) | 1;
-    received_signal = -1;
-    return pid_ennemy2;
-}
-
 static int send_char(int pid_enemy, char *pos, int index)
 {
     int bit;
@@ -45,7 +18,7 @@ static int send_char(int pid_enemy, char *pos, int index)
         } else {
             send_signal_zero(pid_enemy);
         }
-        usleep(1);
+        usleep(100);
     }
 }
 
