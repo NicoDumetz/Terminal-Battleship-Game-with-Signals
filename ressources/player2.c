@@ -54,17 +54,19 @@ static int game_loop(int pid_ennemy, char **map, char **map_enemy)
     display_all(map, map_enemy);
     waiting_player(pid_ennemy, map, map_enemy);
     attack_player(pid_ennemy, map, map_enemy);
+    return check_victory(pid_ennemy, map, map_enemy);
 }
 
 int player2(char **map, char **av, char **map_enemy)
 {
     int pid_ennemy = my_getnbr(av[2]);
+    int stop = 3;
 
     connection_player2(pid_ennemy);
     received_signal = -1;
     usleep(10000);
     send_pid(getpid(), pid_ennemy);
-    while (1)
-        game_loop(pid_ennemy, map, map_enemy);
+    while (stop == 3)
+        stop = game_loop(pid_ennemy, map, map_enemy);
     return 0;
 }

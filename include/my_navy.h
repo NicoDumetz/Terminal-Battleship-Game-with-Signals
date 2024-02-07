@@ -42,4 +42,5 @@ char **create_void_map(void);
 int check_pos(int len, char *pos);
 int check_shoot(char **map, char *pos, int pid_ennemy2);
 int check_missed_or_hit(char **map, char *pos);
+int check_victory(int pid_ennemy, char **map, char **map_enemy);
 #endif

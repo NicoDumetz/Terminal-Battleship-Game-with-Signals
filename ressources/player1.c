@@ -7,6 +7,33 @@
 #include "../include/my_navy.h"
 #include "../include/my.h"
 
+int check_victory(int pid_ennemy, char **map, char **map_enemy)
+{
+    int compt = 0; //14
+
+    for (int i = 0; map[i]; i++) {
+        for (int j = 0; map[i][j]; j++) {
+            compt += map[i][j] == 'x' ? 1 : 0;
+        }
+    }
+    if (compt == 14) {
+        display_all(map, map_enemy);
+        my_printf("Enemy won\n");
+        return 1;
+    }
+    compt = 0;
+    for (int i = 0; map_enemy[i]; i++) {
+        for (int j = 0; map_enemy[i][j]; j++) {
+            compt += map_enemy[i][j] == 'x' ? 1 : 0;
+        }
+    }
+    if (compt == 14) {
+        display_all(map, map_enemy);
+        my_printf("I won\n");
+        return 0;
+    }
+    return 3;
+}
 
 int attack_player(int pid_ennemy2, char **map, char **map_enemy)
 {
@@ -44,11 +71,13 @@ static int game(int pid_ennemy2, char **map, char **map_enemy)
     display_all(map, map_enemy);
     attack_player(pid_ennemy2, map, map_enemy);
     waiting_player(pid_ennemy2, map, map_enemy);
+    return check_victory(pid_ennemy2, map, map_enemy);
 }
 
 int player1(char **map, char **map_enemy)
 {
     int pid_ennemy2 = 0;
+    int stop = 3;
 
     connection_player1();
     received_signal = -1;
@@ -57,7 +86,7 @@ int player1(char **map, char **map_enemy)
     for (int i = 0; i < sizeof(int) * 8; i++) {
         pid_ennemy2 = set_pid_ennemy(pid_ennemy2);
     }
-    while (1)
-        game(pid_ennemy2, map, map_enemy);
-    return 0;
+    while (stop == 3)
+        stop = game(pid_ennemy2, map, map_enemy);
+    return stop;
 }
