@@ -10,6 +10,10 @@
 
 int check_pos(int len, char *pos)
 {
+    if (my_strlen(pos) != 2) {
+        my_printf("\nwrong position\n\n");
+        return 0;
+    }
     len = pos[0] >= 65 && pos[0] <= 72 ? len : 0;
     len = pos[1] >= 49 && pos[1] <= 56 ? len : 0;
     if (len == 0)

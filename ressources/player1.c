@@ -38,6 +38,14 @@ int check_victory(int pid_ennemy, char **map, char **map_enemy)
     return 3;
 }
 
+static char *set_char(char *str)
+{
+    int i;
+
+    for (i = 0; str[i]; i++);
+    str[i - 1] = '\0';
+}
+
 int attack_player(int pid_ennemy2, char **map, char **map_enemy)
 {
     char *buffer = malloc(1000);
@@ -46,7 +54,7 @@ int attack_player(int pid_ennemy2, char **map, char **map_enemy)
     while (len < 1) {
         my_printf("attack: ");
         len = read(0, buffer, 1000);
-        buffer[2] = '\0';
+        set_char(buffer);
         len = check_pos(len, buffer);
     }
     signal(SIGUSR1, signal_handler_player);
