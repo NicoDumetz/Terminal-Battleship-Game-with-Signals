@@ -42,8 +42,8 @@ static char *set_char(char *str)
 {
     int i;
 
-    for (i = 0; str[i]; i++);
-    str[i - 1] = '\0';
+    for (i = 0; str[i] != '\n'; i++);
+    str[i] = '\0';
 }
 
 int attack_player(int pid_ennemy2, char **map, char **map_enemy)
