@@ -25,7 +25,7 @@ int check_shoot(char **map, char *pos, int pid_ennemy2)
         my_printf("\nresult: %s:missed\n\n", pos);
         if (map[i][j] == '.')
             map[i][j] = 'o';
-        usleep(10000);
+        usleep(1000);
         send_signal_zero(pid_ennemy2);
     } else if (map[i][j] != '.') {
         my_printf("\nresult: %s:hit\n\n", pos);

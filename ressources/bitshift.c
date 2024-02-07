@@ -18,7 +18,7 @@ static int send_char(int pid_enemy, char *pos, int index)
         } else {
             send_signal_zero(pid_enemy);
         }
-        usleep(10000);
+        usleep(1000);
     }
 }
 
