@@ -77,10 +77,10 @@ static int check_valid_boat(char a, char b, char c, char d)
 static int valid_coord(char *filemap)
 {
     for (int i = 0; i <= 24; i += 8) {
-        if (!(!(filemap[i + 2] == filemap[i + 5] ||
+        if (!(filemap[i + 2] == filemap[i + 5] ||
             filemap[i + 3] == filemap[i + 6]) ||
-            !(ABS(filemap[i + 2] - filemap[i + 5]) == (filemap[i] - '0') ||
-            ABS(filemap[i + 3] - filemap[i + 6]) == (filemap[i] - '0'))))
+            !(ABS(filemap[i + 2] - filemap[i + 5]) == (filemap[i] - '0' - 1) ||
+            ABS(filemap[i + 3] - filemap[i + 6]) == (filemap[i] - '0' - 1)))
             return 1;
     }
     return 0;

@@ -30,7 +30,7 @@ int check_shoot(char **map, char *pos, int pid_ennemy2)
     } else if (map[i][j] != '.') {
         my_printf("\nresult: %s:hit\n\n", pos);
         map[i][j] = 'x';
-        usleep(10000);
+        usleep(1000);
         send_signal_one(pid_ennemy2);
     }
 }
