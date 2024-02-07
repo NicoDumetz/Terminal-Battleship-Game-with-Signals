@@ -53,7 +53,6 @@ int attack_player(int pid_ennemy2, char **map, char **map_enemy)
     received_signal = -1;
     while (received_signal == -1);
     check_missed_or_hit(map_enemy, buffer);
-    free(buffer);
 }
 
 int waiting_player(int pid_ennemy2, char **map, char **map_enemy)
@@ -67,7 +66,6 @@ int waiting_player(int pid_ennemy2, char **map, char **map_enemy)
     while (received_signal == -1);
     file = get_pos();
     check_shoot(map, file, pid_ennemy2);
-    free(file);
 }
 
 static int game(int pid_ennemy2, char **map, char **map_enemy)

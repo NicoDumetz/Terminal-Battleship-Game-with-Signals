@@ -71,5 +71,5 @@ int player2(char **map, char **av, char **map_enemy)
     send_pid(getpid(), pid_ennemy);
     while (stop == 3)
         stop = game_loop(pid_ennemy, map, map_enemy);
-    return 0;
+    return stop;
 }
