@@ -64,7 +64,8 @@ int player2(char **map, char **av, char **map_enemy)
     int pid_ennemy = my_getnbr(av[2]);
     int stop = 3;
 
-    connection_player2(pid_ennemy);
+    if (connection_player2(pid_ennemy) == 84)
+        return 84;
     received_signal = -1;
     usleep(10000);
     send_pid(getpid(), pid_ennemy);
