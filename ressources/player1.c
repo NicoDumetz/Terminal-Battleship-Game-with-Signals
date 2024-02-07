@@ -60,7 +60,7 @@ int waiting_player(int pid_ennemy2, char **map, char **map_enemy)
 {
     char *file;
 
-    my_printf("waiting for enemy's attack...\n");
+    my_printf("\nwaiting for enemy's attack...\n");
     signal(SIGUSR1, signal_handler_player);
     signal(SIGUSR2, signal_handler_player);
     received_signal = -1;

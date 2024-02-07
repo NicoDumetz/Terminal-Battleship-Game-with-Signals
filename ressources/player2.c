@@ -9,10 +9,11 @@
 
 int display_all(char **map, char **map_enemy)
 {
-    my_printf("my_positions:\n");
+    my_printf("my navy:\n");
     display_map(map);
-    my_printf("enemy's positions:\n");
+    my_printf("\nenemy navy:\n");
     display_map(map_enemy);
+    my_printf("\n");
 }
 
 int check_shoot(char **map, char *pos, int pid_ennemy2)
@@ -40,12 +41,12 @@ int check_missed_or_hit(char **map, char *pos)
     int i = pos[1] - 49;
 
     if (received_signal == 0) {
-        my_printf("%s: missed\n", pos);
+        my_printf("\nresult: %s: missed\n\n", pos);
         if (map[i][j] != 'x')
             map[i][j] = 'o';
     }
     if (received_signal == 1) {
-        my_printf("%s: hit\n", pos);
+        my_printf("\nresult: %s: hit\n\n", pos);
         map[i][j] = 'x';
     }
 }
