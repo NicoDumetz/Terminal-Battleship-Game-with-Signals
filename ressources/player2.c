@@ -21,16 +21,19 @@ int check_shoot(char **map, char *pos, int pid_ennemy2)
     int j = pos[0] - 65;
     int i = pos[1] - 49;
 
-    if (map[i][j] == '.' || map[i][j] == 'o' || map[i][j] == 'x') {
+    if (map[i][j] == '.' || map[i][j] == 'o' || map[i][j] == 'x')
+    {
         my_printf("\nresult: %s:missed\n\n", pos);
         if (map[i][j] == '.')
             map[i][j] = 'o';
-        usleep(100);
+        usleep(1000);
         send_signal_zero(pid_ennemy2);
-    } else if (map[i][j] != '.') {
+    }
+    else if (map[i][j] != '.')
+    {
         my_printf("\nresult: %s:hit\n\n", pos);
         map[i][j] = 'x';
-        usleep(100);
+        usleep(1000);
         send_signal_one(pid_ennemy2);
     }
 }
@@ -40,12 +43,14 @@ int check_missed_or_hit(char **map, char *pos)
     int j = pos[0] - 65;
     int i = pos[1] - 49;
 
-    if (received_signal == 0) {
+    if (received_signal == 0)
+    {
         my_printf("\nresult: %s:missed\n\n", pos);
         if (map[i][j] != 'x')
             map[i][j] = 'o';
     }
-    if (received_signal == 1) {
+    if (received_signal == 1)
+    {
         my_printf("\nresult: %s:hit\n\n", pos);
         map[i][j] = 'x';
     }
