@@ -26,12 +26,10 @@ int connection_player1(void)
 
 void send_signal_co(int pid)
 {
-    if (kill(pid, SIGUSR1) == 0 &&
-        write_file("commande.txt", int_to_str(getpid())) != 84) {
+    if (kill(pid, SIGUSR1) == 0)
         my_printf("successfully connected\n");
-    } else {
+    else
         my_printf("error\n");
-    }
 }
 
 int connection_player2(int pid)

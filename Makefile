@@ -9,8 +9,8 @@ SRC = main.c \
 	  ressources/player1.c \
 	  ressources/player2.c \
 	  ressources/connection.c \
-	  ressources/write.c \
 	  ressources/map.c \
+	  ressources/display.c \
 
 OBJ = $(SRC:.c=.o)
 

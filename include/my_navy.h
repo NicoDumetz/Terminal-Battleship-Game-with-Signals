@@ -21,8 +21,8 @@
 
 extern int received_signal;
 
-int player1(int ac, char **av);
-int player2(int ac, char **av);
+int player1(char **map);
+int player2(char **map, char **av);
 int connection_player1(void);
 int connection_player2(int pid);
 char *read_file(char *filename);
@@ -31,6 +31,7 @@ char *int_to_str(int nb);
 void send_signal_miss(int pid);
 void send_signal_hit(int pid);
 void signal_handler_player(int signe);
-
+char **get_map(char *filepath);
+int display_map(char **map);
 
 #endif

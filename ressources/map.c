@@ -11,7 +11,7 @@
 char **create_void_map(void)
 {
     char **new_map = malloc(sizeof(char *) * 9);
-    char *line = "........\n";
+    char *line = "........";
 
     for (int i = 0; i < 8; i++)
         new_map[i] = my_strdup(line);
