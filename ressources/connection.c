@@ -19,7 +19,7 @@ int connection_player1(void)
 {
     signal(SIGUSR1, signal_handler);
     my_printf("my_pid: %d\n\n", getpid());
-    my_printf("waiting for enemy connection...\n\n");
+    my_printf("waiting for enemy...\n\n");
     while (!received_signal);
     my_printf("enemy connected\n\n");
 }

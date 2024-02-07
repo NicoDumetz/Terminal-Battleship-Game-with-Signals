@@ -26,13 +26,13 @@ int check_victory(int pid_ennemy, char **map, char **map_enemy)
     compt = compt_x(map);
     if (compt == 14) {
         display_all(map, map_enemy);
-        my_printf("Enemy won\n");
+        my_printf("\nEnemy won\n");
         return 1;
     }
     compt = compt_x(map_enemy);
     if (compt == 14) {
         display_all(map, map_enemy);
-        my_printf("I won\n");
+        my_printf("\nI won\n");
         return 0;
     }
     return 3;
@@ -60,7 +60,7 @@ int waiting_player(int pid_ennemy2, char **map, char **map_enemy)
 {
     char *file;
 
-    my_printf("\nwaiting for enemy's attack...\n");
+    my_printf("waiting for enemy's attack...\n");
     signal(SIGUSR1, signal_handler_player);
     signal(SIGUSR2, signal_handler_player);
     received_signal = -1;
