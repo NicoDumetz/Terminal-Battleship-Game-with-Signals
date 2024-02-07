@@ -28,7 +28,7 @@ int main(int ac, char **av)
     if (ac >= 2)
         if (my_strncmp(av[1], "-h", 2) == 0)
             return help();
-    map = get_map(av[1]);
+    map = ac == 2 ? get_map(av[1]) : get_map(av[2]);
     if (map == NULL)
         return 84;
     enemy_map = create_void_map();

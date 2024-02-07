@@ -62,7 +62,7 @@ static int game_loop(int pid_ennemy, char **map, char **map_enemy)
 
 int player2(char **map, char **av, char **map_enemy)
 {
-    int pid_ennemy = my_getnbr(av[2]);
+    int pid_ennemy = my_getnbr(av[1]);
     int stop = 3;
 
     if (connection_player2(pid_ennemy) == 84)

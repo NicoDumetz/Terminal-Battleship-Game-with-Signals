@@ -25,9 +25,9 @@ int connection_player1(void)
     sa.sa_flags = SA_SIGINFO;
     sigaction(SIGUSR1, &sa, NULL);
     my_printf("my_pid: %d\n\n", getpid());
-    my_printf("waiting for enemy...\n\n");
+    my_printf("waiting for enemy...\n");
     while (!received_signal);
-    my_printf("enemy connected\n\n");
+    my_printf("\nenemy connected\n\n");
     return 0;
 }
 
