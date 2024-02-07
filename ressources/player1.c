@@ -7,26 +7,29 @@
 #include "../include/my_navy.h"
 #include "../include/my.h"
 
-int check_victory(int pid_ennemy, char **map, char **map_enemy)
+static int compt_x(char **map)
 {
-    int compt = 0; //14
+    int compt = 0;
 
     for (int i = 0; map[i]; i++) {
         for (int j = 0; map[i][j]; j++) {
             compt += map[i][j] == 'x' ? 1 : 0;
         }
     }
+    return compt;
+}
+
+int check_victory(int pid_ennemy, char **map, char **map_enemy)
+{
+    int compt = 0;
+
+    compt = compt_x(map);
     if (compt == 14) {
         display_all(map, map_enemy);
         my_printf("Enemy won\n");
         return 1;
     }
-    compt = 0;
-    for (int i = 0; map_enemy[i]; i++) {
-        for (int j = 0; map_enemy[i][j]; j++) {
-            compt += map_enemy[i][j] == 'x' ? 1 : 0;
-        }
-    }
+    compt = compt_x(map_enemy);
     if (compt == 14) {
         display_all(map, map_enemy);
         my_printf("I won\n");

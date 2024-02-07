@@ -16,5 +16,5 @@ int main(int ac, char **av)
         return 84;
     if (ac == 3)
         return player2(map, av, enemy_map);
-    return player1(map, enemy_map);;
+    return player1(map, enemy_map);
 }
