@@ -5,8 +5,8 @@
 ** map.c
 */
 
-#include "../include/my.h"
-#include "../include/my_navy.h"
+#include "my.h"
+#include "my_navy.h"
 
 char **create_void_map(void)
 {
@@ -19,6 +19,35 @@ char **create_void_map(void)
     return new_map;
 }
 
+void free_map(char **map)
+{
+    int i = 0;
+
+    for (i = 0; map[i]; i++)
+        free(map[i]);
+    free(map[i]);
+    free(map);
+}
+
+static int fill_map(char **map, char *filemap)
+{
+    int min_char = ((filemap[2] < filemap[5]) ? filemap[2] : filemap[5]) - 'A';
+    int min_int = ((filemap[3] < filemap[6]) ? filemap[3] : filemap[6]) - '1';
+    int *modifiyer;
+
+    if (filemap[2] != filemap[5])
+        modifiyer = &min_char;
+    else
+        modifiyer = &min_int;
+    for (char i = filemap[0]; i != '0'; i--) {
+        if (map[min_int][min_char] != '.')
+            return 1;
+        map[min_int][min_char] = filemap[0];
+        *modifiyer += 1;
+    }
+    return 0;
+}
+
 static int is_between(char c, char min, char max)
 {
     if (c >= min && c <= max)
@@ -28,8 +57,8 @@ static int is_between(char c, char min, char max)
 
 static int check_valid_boat(char a, char b, char c, char d)
 {
-    return (a != b) && (a != c) && (a != d) && (b != c) && (b != d) &&
-        (c != d);
+    return (a == b) || (a == c) || (a == d) || (b == c) || (b == d) ||
+        (c == d);
 }
 
 static int valid_coord(char *filemap)
@@ -78,5 +107,13 @@ char **get_map(char *filepath)
     readed = read(fd, filemap, 31);
     if (not_valid_map(filemap, readed))
         return 0;
+    close(fd);
     map = create_void_map();
+    for (int i = 0; i <= 24; i += 8) {
+        if (fill_map(map, &filemap[i])) {
+            free_map(map);
+            return 0;
+        }
+    }
+    return map;
 }
