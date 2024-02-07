@@ -18,7 +18,7 @@ OBJ = $(SRC:.c=.o)
 
 CFLAGS += -Llib -lmy -Iinclude
 
-NAME = navy
+NAME = my_navy
 
 all: $(NAME)
 
