@@ -21,8 +21,8 @@
 
 extern int received_signal;
 
-int player1(char **map);
-int player2(char **map, char **av);
+int player1(char **map, char **map_enemy);
+int player2(char **map, char **av, char **map_enemy);
 int connection_player1(void);
 int connection_player2(int pid);
 char *int_to_str(int nb);
@@ -35,8 +35,11 @@ int send_pid(int pid, int pid_enemy);
 int set_pid_ennemy(int pid_ennemy2);
 char *get_pos(void);
 int send_pos(int pid_enemy, char *pos);
-int attack_player(int pid_ennemy2);
-int waiting_player(int pid_ennemy2);
-int display_all(char **map);
-
+int attack_player(int pid_ennemy2, char **map, char **map_enemy);
+int waiting_player(int pid_ennemy2, char **map, char **map_enemy);
+int display_all(char **map, char **map_enemy);
+char **create_void_map(void);
+int check_pos(int len, char *pos);
+int check_shoot(char **map, char *pos, int pid_ennemy2);
+int check_missed_or_hit(char **map, char *pos);
 #endif

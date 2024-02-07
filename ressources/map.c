@@ -8,6 +8,15 @@
 #include "my.h"
 #include "my_navy.h"
 
+int check_pos(int len, char *pos)
+{
+    len = pos[0] >= 65 && pos[0] <= 72 ? len : 0;
+    len = pos[1] >= 49 && pos[1] <= 56 ? len : 0;
+    if (len == 0)
+        my_printf("wrong position\n");
+    return len;
+}
+
 char **create_void_map(void)
 {
     char **new_map = malloc(sizeof(char *) * 9);

@@ -8,26 +8,24 @@
 #include "../include/my.h"
 
 
-int attack_player(int pid_ennemy2)
+int attack_player(int pid_ennemy2, char **map, char **map_enemy)
 {
     char *buffer = malloc(1000);
     int len = 0;
 
     while (len < 1) {
         my_printf("attack: ");
-        len = read(0, buffer, 1000);//verify buffer
+        len = read(0, buffer, 1000);
+        buffer[2] = '\0';
+        len = check_pos(len, buffer);
     }
-    buffer[2] = '\0';
     send_pos(pid_ennemy2, buffer);
     received_signal = -1;
     while (received_signal == -1);
-    if (received_signal == 0)
-        my_printf("%s: missed\n", buffer);
-    if (received_signal == 1)
-        my_printf("%s: hit\n", buffer);
+    check_missed_or_hit(map_enemy, buffer);
 }
 
-int waiting_player(int pid_ennemy2)
+int waiting_player(int pid_ennemy2, char **map, char **map_enemy)
 {
     char *file;
 
@@ -37,20 +35,18 @@ int waiting_player(int pid_ennemy2)
     received_signal = -1;
     while (received_signal == -1);
     file = get_pos();
-    my_printf("%s : missed or hit\n", file);
-    usleep(100000);
-    send_signal_one(pid_ennemy2);
+    check_shoot(map, file, pid_ennemy2);
 }
 
-static int game(int pid_ennemy2, char **map)
+static int game(int pid_ennemy2, char **map, char **map_enemy)
 {
     received_signal = -1;
-    display_all(map);
-    attack_player(pid_ennemy2);
-    waiting_player(pid_ennemy2);
+    display_all(map, map_enemy);
+    attack_player(pid_ennemy2, map, map_enemy);
+    waiting_player(pid_ennemy2, map, map_enemy);
 }
 
-int player1(char **map)
+int player1(char **map, char **map_enemy)
 {
     int pid_ennemy2 = 0;
 
@@ -62,6 +58,6 @@ int player1(char **map)
         pid_ennemy2 = set_pid_ennemy(pid_ennemy2);
     }
     while (1)
-        game(pid_ennemy2, map);
+        game(pid_ennemy2, map, map_enemy);
     return 0;
 }
