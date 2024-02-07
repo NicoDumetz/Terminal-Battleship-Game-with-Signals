@@ -39,6 +39,7 @@ int attack_player(int pid_ennemy2, char **map, char **map_enemy);
 int waiting_player(int pid_ennemy2, char **map, char **map_enemy);
 int display_all(char **map, char **map_enemy);
 char **create_void_map(void);
+void free_map(char **map);
 int check_pos(int len, char *pos);
 int check_shoot(char **map, char *pos, int pid_ennemy2);
 int check_missed_or_hit(char **map, char *pos);

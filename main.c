@@ -7,6 +7,7 @@
 #include "include/my.h"
 #include "include/my_navy.h"
 #include "lib/my/my_printf/include/my_printf.h"
+#include <stdlib.h>
 
 static int help(void)
 {
@@ -22,17 +23,20 @@ int main(int ac, char **av)
 {
     char **map;
     char **enemy_map;
+    int return_value = 84;
 
     if (ac >= 2)
         if (my_strncmp(av[1], "-h", 2) == 0)
             return help();
-    enemy_map = create_void_map();
     map = get_map(av[1]);
     if (map == NULL)
         return 84;
+    enemy_map = create_void_map();
     if (ac == 3)
-        return player2(map, av, enemy_map);
+        return_value = player2(map, av, enemy_map);
     if (ac == 2)
-        return player1(map, enemy_map);
-    return 84;
+        return_value = player1(map, enemy_map);
+    free_map(map);
+    free(enemy_map);
+    return return_value;
 }
