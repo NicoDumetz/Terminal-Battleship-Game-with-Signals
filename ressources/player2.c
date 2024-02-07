@@ -53,9 +53,14 @@ int check_missed_or_hit(char **map, char *pos)
 
 static int game_loop(int pid_ennemy, char **map, char **map_enemy)
 {
+    int var;
+
     received_signal = -1;
     display_all(map, map_enemy);
     waiting_player(pid_ennemy, map, map_enemy);
+    var = check_victory(pid_ennemy, map, map_enemy);
+    if (var != 3)
+         return var;
     attack_player(pid_ennemy, map, map_enemy);
     return check_victory(pid_ennemy, map, map_enemy);
 }

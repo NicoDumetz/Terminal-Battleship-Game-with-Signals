@@ -82,9 +82,14 @@ int waiting_player(int pid_ennemy2, char **map, char **map_enemy)
 
 static int game(int pid_ennemy2, char **map, char **map_enemy)
 {
+    int var;
+
     received_signal = -1;
     display_all(map, map_enemy);
     attack_player(pid_ennemy2, map, map_enemy);
+    var = check_victory(pid_ennemy2, map, map_enemy);
+    if (var != 3)
+         return var;
     waiting_player(pid_ennemy2, map, map_enemy);
     return check_victory(pid_ennemy2, map, map_enemy);
 }
