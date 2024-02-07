@@ -20,3 +20,13 @@ void send_signal_zero(int pid)
         my_printf("error sigusr2 send\n");
     }
 }
+
+void signal_handler_player(int signe)
+{
+    if (signe == SIGUSR1) {
+        received_signal = 1;
+    }
+    if (signe == SIGUSR2) {
+        received_signal = 0;
+    }
+}

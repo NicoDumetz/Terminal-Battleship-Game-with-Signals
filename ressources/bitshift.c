@@ -12,7 +12,7 @@ int send_pid(int pid, int pid_enemy)
 {
     int bit;
 
-     for (int i = (sizeof(int) * 8) - 1; i >= 0; i--) {
+    for (int i = (sizeof(int) * 8) - 1; i >= 0; i--) {
         bit = (pid >> i) & 1;
         if (bit == 1) {
             send_signal_one(pid_enemy);
@@ -36,8 +36,10 @@ int set_pid_ennemy(int pid_ennemy2)
 
 static int send_char(int pid_enemy, char *pos, int index)
 {
+    int bit;
+
     for (int i = 7; i >= 0; i--) {
-        int bit = (pos[index] >> i) & 1;
+        bit = (pos[index] >> i) & 1;
         if (bit == 1) {
             send_signal_one(pid_enemy);
         } else {

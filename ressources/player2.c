@@ -7,16 +7,6 @@
 #include "../include/my_navy.h"
 #include "../include/my.h"
 
-void signal_handler_player(int signe)
-{
-    if (signe == SIGUSR1) {
-        received_signal = 1;
-    }
-    if (signe == SIGUSR2) {
-        received_signal = 0;
-    }
-}
-
 int display_all(char **map)
 {
     my_printf("my_positions:\n");
